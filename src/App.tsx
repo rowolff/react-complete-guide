@@ -30,7 +30,7 @@ function App() {
       <h2>Let's get started!</h2>
       {expenses.map((expense) => (
         <ExpenseItem
-          id={expense.id}
+          key={expense.id}
           date={expense.date}
           title={expense.title}
           amount={expense.amount}
