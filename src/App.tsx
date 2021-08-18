@@ -1,9 +1,10 @@
 import React from 'react';
 
-import ExpenseItem from './components/ExpenseItem';
+import type { Expense } from './types';
+import Expenses from './components/Expenses';
 
 function App() {
-  const expenses = [
+  const expenses: Expense[] = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -28,14 +29,7 @@ function App() {
   return (
     <div>
       <h2>Let's get started!</h2>
-      {expenses.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          date={expense.date}
-          title={expense.title}
-          amount={expense.amount}
-        />
-      ))}
+      <Expenses expenses={expenses} />
     </div>
   );
 }
