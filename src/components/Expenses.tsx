@@ -3,6 +3,7 @@ import React from 'react';
 import './Expenses.css';
 
 import type { Expense } from '../types';
+import Card from './Card';
 import ExpenseItem from './ExpenseItem';
 
 interface Props {
@@ -11,16 +12,11 @@ interface Props {
 
 const Expenses: React.FC<Props> = ({ expenses }) => {
   return (
-    <div className="expenses">
-      {expenses.map(({id, date, title, amount}) => (
-        <ExpenseItem
-          key={id}
-          date={date}
-          title={title}
-          amount={amount}
-        />
+    <Card classNames={['expenses']}>
+      {expenses.map(({ id, date, title, amount }) => (
+        <ExpenseItem key={id} date={date} title={title} amount={amount} />
       ))}
-    </div>
+    </Card>
   );
 };
 
