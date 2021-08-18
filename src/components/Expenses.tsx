@@ -12,12 +12,12 @@ interface Props {
 const Expenses: React.FC<Props> = ({ expenses }) => {
   return (
     <div className="expenses">
-      {expenses.map((expense) => (
+      {expenses.map(({id, date, title, amount}) => (
         <ExpenseItem
-          key={expense.id}
-          date={expense.date}
-          title={expense.title}
-          amount={expense.amount}
+          key={id}
+          date={date}
+          title={title}
+          amount={amount}
         />
       ))}
     </div>
