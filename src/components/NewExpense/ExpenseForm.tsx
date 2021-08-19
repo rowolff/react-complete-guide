@@ -18,14 +18,25 @@ const ExpenseForm: React.FC = () => {
     setDate(new Date(e.currentTarget.value));
   };
 
-  console.log(title, amount, date);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const expenseData = {
+      title,
+      amount,
+      date,
+    };
+    console.log(expenseData);
+    setTitle('');
+    setAmount(0.0);
+    setDate(new Date());
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={handleTitleChange} />
+          <input type="text" onChange={handleTitleChange} value={title} />
         </div>
       </div>
       <div className="new-expense__controls">
@@ -36,6 +47,7 @@ const ExpenseForm: React.FC = () => {
             min="0.01"
             step="0.01"
             onChange={handleAmountChange}
+            value={amount}
           />
         </div>
       </div>
@@ -47,6 +59,7 @@ const ExpenseForm: React.FC = () => {
             min="2019-01-01"
             max="2022-12-31"
             onChange={handleDateChange}
+            value={date.toISOString().split('T')[0]}
           />
         </div>
       </div>
