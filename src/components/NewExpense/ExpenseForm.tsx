@@ -4,9 +4,10 @@ import './ExpenseForm.css';
 
 interface Props {
   onSaveExpenseData(data: ExpenseInputData): void;
+  onCancel(): void;
 }
 
-const ExpenseForm: React.FC<Props> = ({ onSaveExpenseData }) => {
+const ExpenseForm: React.FC<Props> = ({ onSaveExpenseData, onCancel }) => {
   const [title, setTitle] = useState<string>('');
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
@@ -33,10 +34,11 @@ const ExpenseForm: React.FC<Props> = ({ onSaveExpenseData }) => {
     setTitle('');
     setAmount(0.0);
     setDate(new Date());
+    onCancel();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} onReset={onCancel}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -68,6 +70,7 @@ const ExpenseForm: React.FC<Props> = ({ onSaveExpenseData }) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="reset">Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
