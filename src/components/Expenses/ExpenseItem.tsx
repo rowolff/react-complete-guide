@@ -10,17 +10,7 @@ interface Props {
   amount: number;
 }
 
-const ExpenseItem: React.FC<Props> = ({
-  date,
-  title: titleFromProps,
-  amount,
-}) => {
-  const [title, setTitle] = useState<string>(titleFromProps);
-
-  const handleTitleChange = () => {
-    setTitle('Title updated');
-  };
-
+const ExpenseItem: React.FC<Props> = ({ date, title, amount }) => {
   return (
     <Card classNames={['expense-item']}>
       <ExpenseDate date={date} />
@@ -28,7 +18,6 @@ const ExpenseItem: React.FC<Props> = ({
         <h2>{title}</h2>
         <div className="expense-item__price">${amount}</div>
       </div>
-      <button onClick={handleTitleChange}>Change Title</button>
     </Card>
   );
 };
