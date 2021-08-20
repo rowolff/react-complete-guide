@@ -16,7 +16,7 @@ const ExpensesFilter: React.FC<Props> = ({ onFilterChange, value }) => {
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label>Filter by year</label>
-        <select onChange={handleFilterSelection} defaultValue={value}>
+        <select onChange={handleFilterSelection} value={value}>
           <option value="2022">2022</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
