@@ -2,7 +2,6 @@ import React from 'react';
 
 import './Expenses.css';
 
-import type { Expense } from '../../types';
 import Card from '../UI/Card';
 import ExpenseItem from './ExpenseItem';
 

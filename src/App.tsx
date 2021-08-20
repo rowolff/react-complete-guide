@@ -1,6 +1,5 @@
 import React from 'react';
 
-import type { Expense } from './types';
 import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from './components/Expenses/Expenses';
 
@@ -27,9 +26,14 @@ function App() {
     },
   ];
 
+  const handleSaveNewExpense = (newExpense: Expense) => {
+    console.log('From App.js: ');
+    console.log(newExpense);
+  };
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense onSaveNewExpense={handleSaveNewExpense} />
       <Expenses expenses={expenses} />
     </div>
   );

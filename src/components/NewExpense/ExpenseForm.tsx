@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm: React.FC = () => {
+interface Props {
+  onSaveExpenseData(data: ExpenseInputData): void;
+}
+
+const ExpenseForm: React.FC<Props> = ({ onSaveExpenseData }) => {
   const [title, setTitle] = useState<string>('');
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
@@ -20,12 +24,12 @@ const ExpenseForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const expenseData = {
+    const expenseInputData: ExpenseInputData = {
       title,
       amount,
       date,
     };
-    console.log(expenseData);
+    onSaveExpenseData(expenseInputData);
     setTitle('');
     setAmount(0.0);
     setDate(new Date());
