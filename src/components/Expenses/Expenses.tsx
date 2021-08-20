@@ -11,8 +11,8 @@ interface Props {
 }
 
 const Expenses: React.FC<Props> = ({ expenses }) => {
-  const [filteredYear, setFilteredYear] = useState<number | undefined>(
-    undefined
+  const [filteredYear, setFilteredYear] = useState<number>(
+    new Date().getFullYear()
   );
 
   const handleFilterChange = (year: number) => {
@@ -34,7 +34,7 @@ const Expenses: React.FC<Props> = ({ expenses }) => {
 
   return (
     <Card classNames={['expenses']}>
-      <ExpenseFilter onFilterChange={handleFilterChange} />
+      <ExpenseFilter onFilterChange={handleFilterChange} value={filteredYear}/>
       {filteredExpenseItems}
     </Card>
   );
