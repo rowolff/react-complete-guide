@@ -19,12 +19,9 @@ const Expenses: React.FC<Props> = ({ expenses }) => {
     setFilteredYear(year);
   };
 
-  let filteredExpenses: Expense[] = expenses;
-  if (filteredYear) {
-    filteredExpenses = expenses.filter(
-      (expense) => filteredYear === expense.date.getFullYear()
-    );
-  }
+  const filteredExpenses: Expense[] = expenses.filter(
+    (expense) => filteredYear === expense.date.getFullYear()
+  );
 
   const filteredExpenseItems = filteredExpenses.map(
     ({ id, date, title, amount }) => (
@@ -34,7 +31,7 @@ const Expenses: React.FC<Props> = ({ expenses }) => {
 
   return (
     <Card classNames={['expenses']}>
-      <ExpenseFilter onFilterChange={handleFilterChange} value={filteredYear}/>
+      <ExpenseFilter onFilterChange={handleFilterChange} value={filteredYear} />
       {filteredExpenseItems}
     </Card>
   );
