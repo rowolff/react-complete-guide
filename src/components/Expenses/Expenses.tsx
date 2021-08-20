@@ -29,10 +29,15 @@ const Expenses: React.FC<Props> = ({ expenses }) => {
       <ExpenseItem key={id} date={date} title={title} amount={amount} />
     ));
 
+  const defaultMessage = <p>No expenses found.</p>;
+
+  const expensesList =
+    filteredExpenseItems.length === 0 ? defaultMessage : filteredExpenseItems;
+
   return (
     <Card classNames={['expenses']}>
       <ExpenseFilter onFilterChange={handleFilterChange} value={filteredYear} />
-      {filteredExpenseItems}
+      {expensesList}
     </Card>
   );
 };
