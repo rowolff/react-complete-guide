@@ -23,11 +23,11 @@ const Expenses: React.FC<Props> = ({ expenses }) => {
     (expense) => filteredYear === expense.date.getFullYear()
   );
 
-  const filteredExpenseItems = filteredExpenses.map(
-    ({ id, date, title, amount }) => (
+  const filteredExpenseItems = filteredExpenses
+    .sort((ex1, ex2) => (ex1.date < ex2.date ? 1 : -1))
+    .map(({ id, date, title, amount }) => (
       <ExpenseItem key={id} date={date} title={title} amount={amount} />
-    )
-  );
+    ));
 
   return (
     <Card classNames={['expenses']}>
