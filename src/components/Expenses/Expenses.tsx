@@ -5,6 +5,7 @@ import './Expenses.css';
 import Card from '../UI/Card';
 import ExpenseFilter from '../ExpenseFilter/ExpensesFilter';
 import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
 
 interface Props {
   expenses: Expense[];
@@ -30,6 +31,7 @@ const Expenses: React.FC<Props> = ({ expenses }) => {
           onFilterChange={handleFilterChange}
           value={filteredYear}
         />
+        <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList items={filteredExpenses} />
       </Card>
     </li>
