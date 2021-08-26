@@ -1,6 +1,6 @@
 {
-  "name": "react-the-complete-guide",
-  "version": "0.1.0",
+  "name": "react-practice-user-component",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
