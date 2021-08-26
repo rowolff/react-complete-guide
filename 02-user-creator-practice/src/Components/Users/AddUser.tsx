@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from 'styled-components';
 
 import Card from '../UI/Card';
+import Button from '../UI/Button';
 
 const formStyle = css`
   margin: 2rem auto;
@@ -44,7 +45,7 @@ const AddUser: React.FC<Props> = () => {
         <input type="text" id="username" />
         <label htmlFor="age">Age (years)</label>
         <input type="number" id="age" />
-        <button type="submit">Add User</button>
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
