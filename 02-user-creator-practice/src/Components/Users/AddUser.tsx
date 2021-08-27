@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { css } from 'styled-components';
 
 import Card from '../UI/Card';
@@ -34,17 +34,39 @@ const formStyle = css`
 interface Props {}
 
 const AddUser: React.FC<Props> = () => {
+  const [userName, setUserName] = useState<string>('');
+  const [age, setAge] = useState<number>();
+
   const handleAddUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(userName, age);
+  };
+
+  const handleUserNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setUserName(event.currentTarget.value);
+  };
+
+  const handleAgeChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setAge(Number.parseInt(event.currentTarget.value));
   };
 
   return (
     <Card styles={formStyle}>
       <form onSubmit={handleAddUser}>
         <label htmlFor="username">Username</label>
-        <input type="text" id="username" />
+        <input
+          type="text"
+          id="username"
+          value={userName}
+          onChange={handleUserNameChange}
+        />
         <label htmlFor="age">Age (years)</label>
-        <input type="number" id="age" />
+        <input
+          type="number"
+          id="age"
+          value={age || ''}
+          onChange={handleAgeChange}
+        />
         <Button type="submit">Add User</Button>
       </form>
     </Card>
