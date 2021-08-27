@@ -39,7 +39,12 @@ const AddUser: React.FC<Props> = () => {
 
   const handleAddUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(userName, age);
+    const inputValid = userName.trim().length > 0 && age && age > 0;
+    if (inputValid) {
+      console.log(userName, age);
+      setUserName('');
+      setAge(undefined);
+    }
   };
 
   const handleUserNameChange = (event: React.FormEvent<HTMLInputElement>) => {
