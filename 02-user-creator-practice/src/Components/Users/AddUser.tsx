@@ -31,24 +31,27 @@ const formStyle = css`
   }
 `;
 
-interface Props {}
+interface Props {
+  onAddUser: (user: User) => void;
+}
 
-const AddUser: React.FC<Props> = () => {
-  const [userName, setUserName] = useState<string>('');
+const AddUser: React.FC<Props> = ({ onAddUser }) => {
+  const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>();
 
   const handleAddUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const inputValid = userName.trim().length > 0 && age && age > 0;
+    const inputValid = name.trim().length > 0 && age && age > 0;
     if (inputValid) {
-      console.log(userName, age);
-      setUserName('');
+      const id = Math.random().toString();
+      onAddUser({ id, name, age: age as number });
+      setName('');
       setAge(undefined);
     }
   };
 
   const handleUserNameChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setUserName(event.currentTarget.value);
+    setName(event.currentTarget.value);
   };
 
   const handleAgeChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -62,7 +65,7 @@ const AddUser: React.FC<Props> = () => {
         <input
           type="text"
           id="username"
-          value={userName}
+          value={name}
           onChange={handleUserNameChange}
         />
         <label htmlFor="age">Age (years)</label>
