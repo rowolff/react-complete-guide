@@ -37,16 +37,17 @@ interface Props {
 
 const AddUser: React.FC<Props> = ({ onAddUser }) => {
   const [name, setName] = useState<string>('');
-  const [age, setAge] = useState<number>();
+  const [age, setAge] = useState<string>('');
 
   const handleAddUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const inputValid = name.trim().length > 0 && age && age > 0;
+    const parsedAge = Number.parseInt(age);
+    const inputValid = name.trim().length > 0 && parsedAge > 0;
     if (inputValid) {
       const id = Math.random().toString();
-      onAddUser({ id, name, age: age as number });
+      onAddUser({ id, name, age: parsedAge });
       setName('');
-      setAge(undefined);
+      setAge('');
     }
   };
 
@@ -55,7 +56,7 @@ const AddUser: React.FC<Props> = ({ onAddUser }) => {
   };
 
   const handleAgeChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setAge(Number.parseInt(event.currentTarget.value));
+    setAge(event.currentTarget.value);
   };
 
   return (
@@ -69,12 +70,7 @@ const AddUser: React.FC<Props> = ({ onAddUser }) => {
           onChange={handleUserNameChange}
         />
         <label htmlFor="age">Age (years)</label>
-        <input
-          type="number"
-          id="age"
-          value={age || ''}
-          onChange={handleAgeChange}
-        />
+        <input type="number" id="age" value={age} onChange={handleAgeChange} />
         <Button type="submit">Add User</Button>
       </form>
     </Card>

@@ -15,8 +15,8 @@ interface Props {
   styles?: FlattenSimpleInterpolation;
 }
 
-const Card: React.FC<Props> = ({ children, styles }) => {
-  return <CardWrapper styles={styles ? styles : []}>{children}</CardWrapper>;
+const Card: React.FC<Props> = ({ children, styles = [] }) => {
+  return <CardWrapper styles={styles}>{children}</CardWrapper>;
 };
 
 export default Card;
